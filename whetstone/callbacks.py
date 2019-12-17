@@ -434,7 +434,7 @@ class WhetstoneLogger(Callback):
 
     def on_train_begin(self, logs=None):
         # Create metadata files that store sharpener params and copy of exemplar set.
-        with open(os.path.join(self.logdir, 'sharpener_params.pkl'), 'w') as f:
+        with open(os.path.join(self.logdir, 'sharpener_params.pkl'), 'wb') as f:
             pickle.dump(self.sharpener.get_config(), f, protocol=1)
         environ_info = {'time':time.time()}
         try:
@@ -447,7 +447,7 @@ class WhetstoneLogger(Callback):
                 environ_info['tensorflow_version'] = K.tf.__version__
         except:
             pass
-        with open(os.path.join(self.logdir, 'environ.pkl'), 'w') as f:
+        with open(os.path.join(self.logdir, 'environ.pkl'), 'wb') as f:
             pickle.dump(environ_info, f, protocol=1)
 
     def on_epoch_end(self, epoch, logs=None):
