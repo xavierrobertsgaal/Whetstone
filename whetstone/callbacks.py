@@ -468,6 +468,6 @@ class WhetstoneLogger(Callback):
                 self.sharpener.set_layer_sharpness(values=logs_['sharpness']) # restore
         log_path = os.path.join(epoch_path, 'log.json')
         with open(log_path, 'wb') as f:
-            json.dump(logs_, f, indent=4)
+            json.dump(logs_.encode(), f, indent=4, encoding='utf-8')
         if self.log_weights:
             self.model.save(os.path.join(epoch_path, 'model_epoch_'+str(epoch)+'.h5'))
