@@ -467,7 +467,7 @@ class WhetstoneLogger(Callback):
                 logs_['test_loss_spiking'], logs_['test_accuracy_spiking'] = self.model.evaluate(x_test, y_test, verbose=0)[0:2]
                 self.sharpener.set_layer_sharpness(values=logs_['sharpness']) # restore
         log_path = os.path.join(epoch_path, 'log.json')
-        with open(log_path, 'wb') as f:
-            json.dump(logs_.encode(), f, indent=4, encoding='utf-8')
+        with open(log_path, 'w') as f:
+            json.dumps(logs_, f, indent=4, encoding='utf-8')
         if self.log_weights:
             self.model.save(os.path.join(epoch_path, 'model_epoch_'+str(epoch)+'.h5'))
